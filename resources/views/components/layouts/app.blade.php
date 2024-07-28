@@ -79,7 +79,33 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <a href="{{ route('home') }}" wire:navigate>
+                            <button type="button"
+                                class="btn {{ request()->routeIs('home') ? 'btn-primary' : 'btn-outline-primary' }} ">Beranda</button>
+                        </a>
+                        <a href="{{ route('user') }}" wire:navigate>
+                            <button type="button"
+                                class="btn {{ request()->routeIs('user') ? 'btn-primary' : 'btn-outline-primary' }}">User</button>
+                        </a>
+                        <a href="{{ route('produk') }}" wire:navigate>
+                            <button type="button"
+                                class="btn {{ request()->routeIs('produk') ? 'btn-primary' : 'btn-outline-primary' }}">Produk</button>
+                        </a>
+                        <a href="{{ route('transaksi') }}" wire:navigate>
+                            <button type="button"
+                                class="btn {{ request()->routeIs('transaksi') ? 'btn-primary' : 'btn-outline-primary' }}">Transaksi</button>
+                        </a>
+                        <a href="{{ route('laporan') }}" wire:navigate>
+                            <button type="button"
+                                class="btn {{ request()->routeIs('laporan') ? 'btn-primary' : 'btn-outline-primary' }}">Laporan</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{ $slot }}
         </main>
     </div>
 </body>
