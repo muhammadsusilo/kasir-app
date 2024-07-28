@@ -42,7 +42,7 @@
                                                 <button wire:click="pilihMenu('edit')" class="btn btn-sm btn-warning">
                                                     Edit
                                                 </button>
-                                                <button wire:click="pilihMenu('hapus')" class="btn btn-sm btn-danger">
+                                                <button wire:click="removeSelected({{ $pengguna->id }})" class="btn btn-sm btn-danger">
                                                     Hapus
                                                 </button>
                                                 {{-- <button wire:click="pilihMenu('edit')"
@@ -57,7 +57,6 @@
                                         </tr>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -113,12 +112,15 @@
                         </div>
                     </div>
                 @elseif($pilihanMenu == 'hapus')
-                    <div class="card border-primary">
-                        <div class="card-header">
+                    <div class="card border-danger">
+                        <div class="card-header bg-danger text-white">
                             Hapus Pengguna
                         </div>
                         <div class="card-body">
-                            tes
+                            Anda Yakin menghapus Pengguna ini ?
+														<p>Nama : {{ $userSelected->name }}</p>
+														<button class="btn btn-danger" wire:click="hapus">Hapus</button>
+														<button class="btn btn-success" wire:click="batal">Batal</button>
                         </div>
                     </div>
                 @endif

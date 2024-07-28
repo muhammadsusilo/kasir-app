@@ -12,7 +12,13 @@ class User extends Component
   public $email;
   public $password;
   public $peran;
+  public $userSelected;
 
+  public function pilihMenu($menu)
+  {
+    $this->pilihanMenu = $menu;
+  }
+  // fungsi untuk simpan
   public function simpan()
   {
     // untuk memvalidasi form tambah
@@ -42,11 +48,27 @@ class User extends Component
     $this->pilihanMenu = "lihat"; // kembali ke lihat / semua pengguna
   }
 
-  public function pilihMenu($menu)
+  // fungsi untuk mengambil id hapus
+  public function removeSelected($id)
   {
-    $this->pilihanMenu = $menu;
+    $this->userSelected = ModelUser::findOrFail($id); // setelah memilih, dan jika tidak ada $id 404 {kurang lebih seperti itu}
+    $this->pilihanMenu ="hapus";
   }
 
+  // fungsi untuk batal ketika mau hapus
+  public function batal() 
+  {
+    // $this->reset();
+    $this->pilihanMenu ="lihat"; // untuk kembali ke lihat / semua pengguna
+  }
+
+  // fungsi untuk hapus ketika mau hapus
+  public function hapus()
+  {
+    $this->userSelected->delete(); // untuk menghapus
+    $this->reset();
+    $this->pilihanMenu ="lihat"; // untuk kembali ke lihat / semua pengguna
+  }
   public function render()
   {
     return view('livewire.user')->with([
