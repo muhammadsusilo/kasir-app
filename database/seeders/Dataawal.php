@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+
 class Dataawal extends Seeder
 {
     /**
@@ -16,7 +17,7 @@ class Dataawal extends Seeder
         $user->name = "Admin";
         $user->email = "admin@gmail.com";
         $user->password = bcrypt("12345678");
-        $user->peran ="admin";
+        $user->peran = "admin";
         $user->save();
     }
 }

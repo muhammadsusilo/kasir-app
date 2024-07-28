@@ -42,8 +42,7 @@
                                                 <button wire:click="pilihMenu('edit')" class="btn btn-sm btn-warning">
                                                     Edit
                                                 </button>
-                                                <button wire:click="pilihMenu('hapus')"
-                                                    class="btn btn-sm btn-danger">
+                                                <button wire:click="pilihMenu('hapus')" class="btn btn-sm btn-danger">
                                                     Hapus
                                                 </button>
                                                 {{-- <button wire:click="pilihMenu('edit')"
@@ -69,7 +68,39 @@
                             Tambah Pengguna
                         </div>
                         <div class="card-body">
-                            tes
+                            <form wire:submit="simpan" method="post">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" wire:model="nama">
+                                @error('nama')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br>
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" wire:model="email">
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br>
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" wire:model="password">
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br>
+                                <label for="peran">Peran</label>
+                                <select class="form-select" wire:model="peran" aria-label="Default select example">
+                                    <option selected>Open this select peran</option>
+                                    <option value="Kasir">Kasir</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                                @error('peran')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                {{-- <button type="button">
+																	cancel
+																</button> --}}
+                                <button type="submit" class="btn btn-success mt-3">Simpan</button>
+                            </form>
                         </div>
                     </div>
                 @elseif($pilihanMenu == 'edit')
