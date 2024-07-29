@@ -39,20 +39,13 @@
                                             <td>{{ $pengguna['email'] }}</td>
                                             <td>{{ $pengguna['peran'] }}</td>
                                             <td>
-                                                <button wire:click="pilihMenu('edit')" class="btn btn-sm btn-warning">
+                                                <button wire:click="editSelected({{ $pengguna->id }})" class="btn btn-sm btn-warning">
                                                     Edit
                                                 </button>
-                                                <button wire:click="removeSelected({{ $pengguna->id }})" class="btn btn-sm btn-danger">
+                                                <button wire:click="removeSelected({{ $pengguna->id }})"
+                                                    class="btn btn-sm btn-danger">
                                                     Hapus
                                                 </button>
-                                                {{-- <button wire:click="pilihMenu('edit')"
-                                                    class="btn {{ $pilihanMenu == 'edit' ? 'btn-primary' : 'btn-outline-primary' }}">
-                                                    Edit Pengguna
-                                                </button> --}}
-                                                {{-- <button wire:click="pilihMenu('hapus')"
-                                                    class="btn {{ $pilihanMenu == 'hapus' ? 'btn-primary' : 'btn-outline-primary' }}">
-                                                    Edit Pengguna
-                                                </button> --}}
                                             </td>
                                         </tr>
                                         </tr>
@@ -81,7 +74,7 @@
                                 @enderror
                                 <br>
                                 <label for="password">Password</label>
-                                <input type="text" class="form-control" wire:model="password">
+                                <input type="password" class="form-control" wire:model="password">
                                 @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -108,7 +101,38 @@
                             Edit Pengguna
                         </div>
                         <div class="card-body">
-                            tes
+                            <form wire:submit="saveEdit" method="post">
+                              {{-- <input type="hidden" > --}}
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" wire:model="nama">
+                                @error('nama')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br>
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" wire:model="email">
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br>
+                                {{-- <label for="password">Password</label>
+                                <input type="password" class="form-control" wire:model="password">
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <br> --}}
+                                <label for="peran">Peran</label>
+                                <select class="form-select" wire:model="peran" aria-label="Default select example">
+                                    <option selected>Open this select peran</option>
+                                    <option value="Kasir">Kasir</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                                @error('peran')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <button type="submit" class="btn btn-success mt-3">Simpan</button>
+                                <button type="button" wire:click="batal" class="btn btn-success mt-3">Batal</button>
+                            </form>
                         </div>
                     </div>
                 @elseif($pilihanMenu == 'hapus')
@@ -118,9 +142,9 @@
                         </div>
                         <div class="card-body">
                             Anda Yakin menghapus Pengguna ini ?
-														<p>Nama : {{ $userSelected->name }}</p>
-														<button class="btn btn-danger" wire:click="hapus">Hapus</button>
-														<button class="btn btn-success" wire:click="batal">Batal</button>
+                            <p>Nama : {{ $userSelected->name }}</p>
+                            <button class="btn btn-danger" wire:click="hapus">Hapus</button>
+                            <button class="btn btn-success" wire:click="batal">Batal</button>
                         </div>
                     </div>
                 @endif
