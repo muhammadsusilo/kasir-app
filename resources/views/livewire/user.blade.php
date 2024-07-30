@@ -39,7 +39,8 @@
                                             <td>{{ $pengguna['email'] }}</td>
                                             <td>{{ $pengguna['peran'] }}</td>
                                             <td>
-                                                <button wire:click="editSelected({{ $pengguna->id }})" class="btn btn-sm btn-warning">
+                                                <button wire:click="editSelected({{ $pengguna->id }})"
+                                                    class="btn btn-sm btn-warning">
                                                     Edit
                                                 </button>
                                                 <button wire:click="removeSelected({{ $pengguna->id }})"
@@ -102,7 +103,7 @@
                         </div>
                         <div class="card-body">
                             <form wire:submit="saveEdit" method="post">
-                              {{-- <input type="hidden" > --}}
+                                {{-- <input type="hidden" > --}}
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" wire:model="nama">
                                 @error('nama')
@@ -115,12 +116,12 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <br>
-                                {{-- <label for="password">Password</label>
+                                <label for="password">Password</label>
                                 <input type="password" class="form-control" wire:model="password">
                                 @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
-                                <br> --}}
+                                <br>
                                 <label for="peran">Peran</label>
                                 <select class="form-select" wire:model="peran" aria-label="Default select example">
                                     <option selected>Open this select peran</option>

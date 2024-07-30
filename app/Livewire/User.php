@@ -98,13 +98,17 @@ class User extends Component
     ]);
 
     // fungsi simpan / tambah
-    $simpan = new ModelUser();
+    $simpan =$this->userSelected;
     $simpan->name = $this->nama; // name untuk di user dan nama untuk di blade
     $simpan->email = $this->email;
+    // jika ada isi password maka akan simpan
+    if($this->password){
+      $simpan->password = bcrypt($this->password);
+    }
     $simpan->peran = $this->peran;
     $simpan->save(); // save
 
-    $this->reset("nama", "email", "email"); // setelah melakukan pengisian form maka reset form
+    $this->reset("nama", "email", "password","peran","userSelected" ); // setelah melakukan pengisian form maka reset form
     $this->pilihanMenu = "lihat"; // kembali ke lihat / semua pengguna
 
   }
