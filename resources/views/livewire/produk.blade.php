@@ -81,7 +81,7 @@
                                 <br>
 
                                 <label for="harga">Harga</label>
-                                <input type="text" class="form-control" wire:model="harga">
+                                <input type="number" class="form-control" wire:model="harga">
                                 @error('harga')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -122,7 +122,7 @@
                                 <br>
 
                                 <label for="harga">Harga</label>
-                                <input type="text" class="form-control" wire:model="harga">
+                                <input type="number" class="form-control" wire:model="harga">
                                 @error('harga')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -146,10 +146,11 @@
                             Hapus Pengguna
                         </div>
                         <div class="card-body">
-                            Anda Yakin menghapus Pengguna ini ?
-                            <p>Nama : {{ $productSelected->name }}</p>
-                            <button class="btn btn-danger" wire:click="hapus">Hapus</button>
-                            <button class="btn btn-success" wire:click="batal">Batal</button>
+                            Anda Yakin menghapus Pengguna ini ? <br>
+                            <span>Kode : {{ $productSelected->kode }}</span> dan
+                            <span>Nama : {{ $productSelected->name }}</span> <br>
+                            <button class="btn btn-danger mt-2" wire:click="hapus">Hapus</button>
+                            <button class="btn btn-success mt-2" wire:click="batal">Batal</button>
                         </div>
                     </div>
                 @endif

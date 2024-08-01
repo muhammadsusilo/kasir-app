@@ -14,7 +14,7 @@ return new class extends Migration {
 			$table->id();
 			$table->string("kode");
 			$table->string("name");
-			$table->string("price")->unsigned();
+			$table->integer("price")->unsigned();
 			$table->integer("stock")->default(1)->unsigned();
 			$table->timestamps();
 		});

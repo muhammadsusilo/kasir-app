@@ -24,12 +24,14 @@ class Produk extends Component
 	{
 		// untuk memvalidasi form tambah
 		$this->validate([
-			'kode' => 'required',
+			'kode' => ["required", "unique:produks,kode"],
 			'nama' => 'required',
 			'harga' => 'required',
 			'stock' => "required"
 		], [
-			"kode.required" => "Kode unik produk harus diisi",
+			"kode.required" => "Kode produk harus diisi",
+			"kode.unique" => "Kode sesuai format",
+			"kode.kode" => "Kode telah digunakan",
 			"nama.required" => "Nama harus diisi",
 			"harga.required" => "Harga harus diisi",
 			"stock.required" => "Stock harus dipilih"
@@ -86,12 +88,14 @@ class Produk extends Component
 	{
 		// untuk memvalidasi form tambah
 		$this->validate([
-			'kode' => 'required',
+			'kode' => ["required","unique:produks,kode"],
 			'nama' => 'required',
 			'harga' => 'required',
 			'stock' => "required"
 		], [
-			"kode.required" => "Kode unik produk harus diisi",
+			"kode.required" => "Kode produk harus diisi",
+			"kode.unique" => "Kode sesuai format",
+			"kode.kode" => "Kode Telah digunakan",
 			"nama.required" => "Nama produk harus diisi",
 			"harga.required" => "Harga harus diisi",
 			"stock.required" => "Stock harus dipilih"
