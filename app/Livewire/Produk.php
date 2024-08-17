@@ -2,10 +2,16 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Produk as ModelProduk;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
+use app\Imports\Produk as imporProduk;
+
 class Produk extends Component
 {
+
+	use WithFileUploads;
 
 	public $pilihanMenu = "lihat";
 	public $kode;
@@ -13,6 +19,8 @@ class Produk extends Component
 	public $harga;
 	public $stock;
 	public $productSelected;
+	public $fileExcel;
+
 
 	public function pilihMenu($menu)
 	{
@@ -88,7 +96,7 @@ class Produk extends Component
 	{
 		// untuk memvalidasi form tambah
 		$this->validate([
-			'kode' => ["required","unique:produks,kode"],
+			'kode' => ["required", "unique:produks,kode"],
 			'nama' => 'required',
 			'harga' => 'required',
 			'stock' => "required"
@@ -119,5 +127,13 @@ class Produk extends Component
 			"semuaProduk" => ModelProduk::all()
 		]);
 	}
-	
+
+	public function importExcel() // nama di ambil dari wire model submit import excel
+	{
+
+		Excel::import(new imporProduk, $this->fileExcel);
+		$this->reset();
+
+	}
+
 }
