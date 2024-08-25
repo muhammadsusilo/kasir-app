@@ -6,7 +6,7 @@ use App\Models\Produk as ModelProduk;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
-use app\Imports\Produk as imporProduk;
+use App\Imports\Produk as imporProduk;
 
 class Produk extends Component
 {
@@ -131,7 +131,7 @@ class Produk extends Component
 	public function importExcel() // nama di ambil dari wire model submit import excel
 	{
 
-		Excel::import(new imporProduk, $this->fileExcel);
+		Excel::import(new imporProduk, $this->fileExcel);  // file excel name di input
 		$this->reset();
 
 	}
